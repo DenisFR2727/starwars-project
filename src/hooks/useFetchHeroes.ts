@@ -3,9 +3,11 @@ import { getHeroes } from "../api/heroesApi";
 import { handleApiError } from "../utils/error";
 import type { Hero } from "../api/types";
 
+// custom useFetchHeroes hook to attract heroes to the state
 export default function useFetchHeroes() {
   const [heroes, setHeroes] = useState<Hero[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchHeroes = async () => {
@@ -13,9 +15,10 @@ export default function useFetchHeroes() {
         setLoading(true);
 
         const res = await getHeroes();
+
         setHeroes(res.results);
       } catch (error: unknown) {
-        handleApiError(error);
+        setError(handleApiError(error));
       } finally {
         setLoading(false);
       }
@@ -24,5 +27,5 @@ export default function useFetchHeroes() {
     fetchHeroes();
   }, []);
 
-  return { heroes, loading };
+  return { heroes, loading, error };
 }

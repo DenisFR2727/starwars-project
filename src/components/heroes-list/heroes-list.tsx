@@ -1,10 +1,12 @@
 import useFetchHeroes from "../../hooks/useFetchHeroes";
+import Error from "../ui/error";
 import Loader from "../ui/loader";
 
 export default function HeroesList() {
-  const { loading, heroes } = useFetchHeroes();
+  const { loading, heroes, error } = useFetchHeroes();
 
   if (loading) return <Loader />;
+  if (error) return <Error />;
 
   return (
     <div>

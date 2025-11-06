@@ -1,6 +1,6 @@
 // types.ts
 
-// 🔹 API response, pagination
+//  API response, pagination
 export interface ApiResponse<T> {
   count: number;
   next: string | null;
@@ -70,7 +70,7 @@ export interface Starship {
   edited: string;
   url: string;
 }
-
+// Error type
 export type ErrorResponse = {
   code: number;
   error: true;
