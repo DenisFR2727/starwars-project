@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
+
+.hero_card {
+  display: flex;
+  max-width: 250px;
+  height: 300px;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+
+  .hero_img {
+    max-width: 250px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid yellow;
+  }
+  .hero_name {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: rgb(243, 243, 4);
+    user-select: none;
+    font-family: "Merriweather", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    bottom: 20px;
+  }
+}
