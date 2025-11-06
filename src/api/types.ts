@@ -70,3 +70,9 @@ export interface Starship {
   edited: string;
   url: string;
 }
+
+export type ErrorResponse = {
+  code: number;
+  error: true;
+  message: string;
+};
