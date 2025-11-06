@@ -1,7 +1,7 @@
 import { handleApiError } from "../utils/error";
 import type { ApiResponse, Hero } from "./types";
 
-export async function getHeroes(page = 1): Promise<ApiResponse<Hero>> {
+export async function getHeroes(page = 2): Promise<ApiResponse<Hero>> {
   try {
     const res = await fetch(`https://sw-api.starnavi.io/people/?page=${page}`);
 

@@ -1,28 +1,10 @@
-import { useEffect, useState } from "react";
-import type { Hero } from "../../api/types";
-import { getHeroes } from "../../api/heroesApi";
-import { handleApiError } from "../../utils/error";
+import useFetchHeroes from "../../hooks/useFetchHeroes";
+import Loader from "../ui/loader";
 
 export default function HeroesList() {
-  const [heroes, setHeroes] = useState<Hero[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const { loading, heroes } = useFetchHeroes();
 
-  useEffect(() => {
-    const fetchHeroes = async () => {
-      try {
-        setLoading(true);
-
-        const res = await getHeroes();
-        setHeroes(res.results);
-      } catch (error: unknown) {
-        handleApiError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchHeroes();
-  }, []);
+  if (loading) return <Loader />;
 
   return (
     <div>
