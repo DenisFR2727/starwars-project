@@ -11,7 +11,6 @@ export default function HeroesList() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { loading, heroes, error, totalPages } = useFetchHeroes(currentPage);
 
-  if (loading) return <Loader />;
   if (error) return <Error />;
 
   const handleNext = () => {
@@ -28,6 +27,7 @@ export default function HeroesList() {
           <HeroCard key={hero.id} hero={hero} />
         ))}
       </div>
+      {loading && <Loader />}
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

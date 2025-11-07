@@ -1,0 +1,145 @@
+.hero_graph_container {
+  width: 100%;
+  height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.hero_graph_header {
+  margin-bottom: 20px;
+  text-align: center;
+
+  h2 {
+    font-size: 24px;
+    color: rgb(243, 243, 4);
+    margin: 0;
+  }
+}
+
+.error_message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+
+  p {
+    margin-top: 10px;
+    color: #d32f2f;
+    font-size: 16px;
+  }
+}
+
+.hero_graph_wrapper {
+  flex: 1;
+  width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+  min-height: 400px;
+}
+
+.node_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.node_title {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.node_name {
+  font-size: 14px;
+  font-weight: bold;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+.node_episode {
+  font-size: 10px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+.node_model {
+  font-size: 10px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+// Мобільні пристрої
+@media (max-width: 768px) {
+  .hero_graph_container {
+    height: calc(100vh - 150px);
+    padding: 10px;
+  }
+
+  .hero_graph_header {
+    margin-bottom: 10px;
+
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  .hero_graph_wrapper {
+    min-height: 300px;
+  }
+
+  .node_content {
+    gap: 2px;
+  }
+
+  .node_title {
+    font-size: 8px;
+  }
+
+  .node_name {
+    font-size: 12px;
+  }
+
+  .node_episode,
+  .node_model {
+    font-size: 9px;
+  }
+}
+
+// Додаткові стилі для дуже маленьких екранів
+@media (max-width: 480px) {
+  .hero_graph_container {
+    height: calc(100vh - 120px);
+    padding: 8px;
+  }
+
+  .hero_graph_header {
+    h2 {
+      font-size: 16px;
+    }
+  }
+
+  .hero_graph_wrapper {
+    min-height: 250px;
+  }
+
+  .node_name {
+    font-size: 11px;
+  }
+}
+
+// Приховуємо міні-карту на мобільних пристроях для економії місця
+@media (max-width: 768px) {
+  .hero_graph_wrapper :global(.react-flow__minimap) {
+    display: none;
+  }
+}

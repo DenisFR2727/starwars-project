@@ -16,6 +16,7 @@ export default function Pagination({
   return (
     <div className={styles.pagination}>
       <button
+        type="button"
         onClick={handlePrev}
         disabled={currentPage === 1}
         className={styles.pagination__btn}
@@ -28,6 +29,7 @@ export default function Pagination({
       </span>
 
       <button
+        type="button"
         onClick={handleNext}
         disabled={currentPage === totalPages}
         className={styles.pagination__btn}
