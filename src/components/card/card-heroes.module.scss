@@ -36,9 +36,21 @@
     bottom: 20px;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .hero_card {
     max-width: 200px;
+    height: 250px;
+    display: flex;
+
+    .hero_img {
+      max-width: 200px;
+      height: 250px;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .hero_card {
+    max-width: 190px;
     height: 250px;
     display: flex;
 
@@ -57,6 +69,36 @@
     .hero_img {
       max-width: 200px;
       height: 250px;
+    }
+  }
+}
+@media (max-width: 412px) {
+  .hero_card {
+    max-width: 170px;
+    height: 250px;
+    display: flex;
+
+    .hero_img {
+      max-width: 200px;
+      height: 250px;
+    }
+    .hero_name {
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 390px) {
+  .hero_card {
+    max-width: 150px;
+    height: 250px;
+    display: flex;
+
+    .hero_img {
+      max-width: 150px;
+      height: 250px;
+    }
+    .hero_name {
+      font-size: 12px;
     }
   }
 }
