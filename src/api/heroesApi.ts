@@ -1,9 +1,13 @@
 import { handleApiError } from "../utils/error";
 import type { ApiResponse, Hero } from "./types";
 
-export async function getHeroes(page = 2): Promise<ApiResponse<Hero>> {
+export async function getHeroes(
+  currentPage: number
+): Promise<ApiResponse<Hero>> {
   try {
-    const res = await fetch(`https://sw-api.starnavi.io/people/?page=${page}`);
+    const res = await fetch(
+      `https://sw-api.starnavi.io/people/?page=${currentPage}`
+    );
 
     if (!res.ok) {
       throw {

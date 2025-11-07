@@ -14,6 +14,9 @@ export default function HeroCard({ hero }: HeroProps) {
         width={250}
         height={300}
       />
+      <div className={styles.hero_id}>
+        <span>{hero.id}</span>
+      </div>
       <div className={styles.hero_name}>
         <p>{hero.name}</p>
       </div>
