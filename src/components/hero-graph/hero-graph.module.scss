@@ -92,7 +92,7 @@
   margin-top: 2px;
 }
 
-// Мобільні пристрої
+// mobile desktop
 @media (max-width: 768px) {
   .hero_graph_container {
     height: calc(100vh - 150px);
@@ -129,7 +129,7 @@
   }
 }
 
-// Додаткові стилі для дуже маленьких екранів
+// Additional styles for very small screens
 @media (max-width: 480px) {
   .hero_graph_container {
     height: calc(100vh - 120px);
@@ -151,7 +151,7 @@
   }
 }
 
-// Приховуємо міні-карту на мобільних пристроях для економії місця
+// Hide mini maps on mobile devices to save space
 @media (max-width: 768px) {
   .hero_graph_wrapper :global(.react-flow__minimap) {
     display: none;
