@@ -33,7 +33,7 @@ export default function useBuildNodes(graphData: GraphData) {
       data: {
         label: (
           <div className={styles.node_content}>
-            <div className={styles.node_title}>Герой</div>
+            <div className={styles.node_title}>Hero</div>
             <div className={styles.node_name}>{graphData.hero.name}</div>
           </div>
         ),
@@ -65,7 +65,7 @@ export default function useBuildNodes(graphData: GraphData) {
         data: {
           label: (
             <div className={styles.node_content}>
-              <div className={styles.node_title}>Фільм</div>
+              <div className={styles.node_title}>Film</div>
               <div className={styles.node_name}>{film.title}</div>
               <div className={styles.node_episode}>
                 Episode {film.episode_id}

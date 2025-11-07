@@ -16,6 +16,20 @@
     color: rgb(243, 243, 4);
     margin: 0;
   }
+  a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #ddd;
+    user-select: none;
+    border: 1px solid rgb(243, 243, 4);
+    border-radius: 10px;
+    padding: 5px;
+  }
+  a:hover {
+    background: rgb(243, 243, 4);
+    color: #000000;
+  }
 }
 
 .error_message {

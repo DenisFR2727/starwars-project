@@ -12,6 +12,7 @@ import useFetchDetailsHero from "../../hooks/useFetchDetailsHero";
 
 import styles from "./hero-graph.module.scss";
 import "reactflow/dist/style.css";
+import { Link } from "react-router";
 
 export default function HeroGraphDetails() {
   const { loading, error, graphData } = useFetchDetailsHero();
@@ -40,6 +41,9 @@ export default function HeroGraphDetails() {
     <div className={styles.hero_graph_container}>
       <div className={styles.hero_graph_header}>
         <h2>Detailed information about the hero: {graphData.hero.name}</h2>
+        <Link to="/">
+          <span>Back page</span>
+        </Link>
       </div>
       <div className={styles.hero_graph_wrapper}>
         {nodes.length > 0 && (
