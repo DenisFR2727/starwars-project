@@ -17,6 +17,8 @@ export default function useFetchHeroes(currentPage: number) {
 
         const res = await getHeroes(Number(currentPage));
 
+        res.results.sort((a, b) => a.id - b.id);
+
         setHeroes(res.results);
         setTotalPages(Math.ceil(res.count / 10));
       } catch (error: unknown) {
