@@ -17,7 +17,7 @@ export async function getHeroes(
     }
 
     return await res.json();
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error(handleApiError(error));
   } finally {
     console.log("Heroes API call finished");
@@ -36,7 +36,7 @@ export async function getHeroById(id: number): Promise<Hero> {
     }
 
     return await res.json();
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error(handleApiError(error));
   }
 }
@@ -53,7 +53,7 @@ export async function getFilmById(id: number): Promise<Film> {
     }
 
     return await res.json();
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error(handleApiError(error));
   }
 }
@@ -62,7 +62,7 @@ export async function getFilmsByIds(ids: number[]): Promise<Film[]> {
   try {
     const films = await Promise.all(ids.map((id) => getFilmById(id)));
     return films;
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error(handleApiError(error));
   }
 }
@@ -79,7 +79,7 @@ export async function getStarshipById(id: number): Promise<Starship> {
     }
 
     return await res.json();
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error(handleApiError(error));
   }
 }
@@ -88,7 +88,7 @@ export async function getStarshipsByIds(ids: number[]): Promise<Starship[]> {
   try {
     const starships = await Promise.all(ids.map((id) => getStarshipById(id)));
     return starships;
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error(handleApiError(error));
   }
 }
