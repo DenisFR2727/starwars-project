@@ -117,6 +117,8 @@ export default function useBuildNodes(graphData: GraphData) {
 
     // Spacecraft nodes
     const starshipNodes: Node[] = [];
+    const nodeSpacing = isMobile ? 180 : 250; // Збільшена відстань між вузлами
+    const starshipRadius = isMobile ? 150 : 250; // Збільшена відстань від фільмів
 
     // We create nodes for ships, grouping them by movie
     graphData.films.forEach((film, filmIndex) => {
@@ -136,9 +138,10 @@ export default function useBuildNodes(graphData: GraphData) {
             (isMobile ? 250 : 300) +
             filmRadius * Math.sin((angle * Math.PI) / 180);
 
+          // Покращене розташування з більшою відстанню
           const offsetX =
-            (starshipIndex - filmStarships.length / 2) * (isMobile ? 120 : 180);
-          const offsetY = isMobile ? 100 : 150;
+            (starshipIndex - (filmStarships.length - 1) / 2) * nodeSpacing;
+          const offsetY = starshipRadius;
 
           const x = baseX + offsetX;
           const y = baseY + offsetY;

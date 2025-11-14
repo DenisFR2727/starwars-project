@@ -31,7 +31,7 @@ export default function HeroesList({ currentPage }: { currentPage: number }) {
       <div className={styles.heroes_list}>
         {heroes.map((hero) => (
           <Link key={hero.id} to={`/hero-id/${hero.id}?page=${currentPage}`}>
-            <HeroCard key={hero.id} hero={hero} />
+            <HeroCard hero={hero} />
           </Link>
         ))}
       </div>

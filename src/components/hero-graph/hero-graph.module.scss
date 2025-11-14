@@ -157,3 +157,25 @@
     display: none;
   }
 }
+
+// Покращення видимості вузлів
+:global(.react-flow__node) {
+  cursor: grab;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 100 !important;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+// Підвищення z-index для вибраних вузлів
+:global(.react-flow__node.selected) {
+  z-index: 1000 !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
