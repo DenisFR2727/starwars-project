@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useFetchHeroes from "../../hooks/useFetchHeroes";
 import HeroCard from "../card/card-heroes";
 import Error from "../ui/error";
@@ -6,25 +5,34 @@ import Loader from "../ui/loader";
 import Pagination from "../ui/pagination";
 
 import styles from "./heroes-list.module.scss";
+import { Link, useNavigate } from "react-router";
 
-export default function HeroesList() {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+export default function HeroesList({ currentPage }: { currentPage: number }) {
+  const navigate = useNavigate();
   const { loading, heroes, error, totalPages } = useFetchHeroes(currentPage);
 
   if (error) return <Error />;
 
   const handleNext = () => {
-    if (currentPage < totalPages) setCurrentPage((prevPage) => prevPage + 1);
+    if (currentPage < totalPages) {
+      const nextPage = currentPage + 1;
+      navigate(`/?page=${nextPage}`);
+    }
   };
   const handlePrev = () => {
-    if (currentPage > 1) setCurrentPage((prevPage) => prevPage - 1);
+    if (currentPage > 1) {
+      const prevPage = currentPage - 1;
+      navigate(`/?page=${prevPage}`);
+    }
   };
 
   return (
     <div>
       <div className={styles.heroes_list}>
         {heroes.map((hero) => (
-          <HeroCard key={hero.id} hero={hero} />
+          <Link key={hero.id} to={`/hero-id/${hero.id}?page=${currentPage}`}>
+            <HeroCard key={hero.id} hero={hero} />
+          </Link>
         ))}
       </div>
       {loading && <Loader />}

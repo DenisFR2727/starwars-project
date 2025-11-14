@@ -31,5 +31,5 @@ export default function useFetchHeroes(currentPage: number) {
     fetchHeroes();
   }, [currentPage]);
 
-  return { heroes, loading, error, totalPages };
+  return { heroes, loading, error, totalPages, currentPage };
 }
