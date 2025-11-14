@@ -33,15 +33,14 @@ export default function useFetchDetailsHero() {
         const heroId = parseInt(id, 10);
         const hero = await getHeroById(heroId);
 
-        // Get films
-        const films =
-          hero.films.length > 0 ? await getFilmsByIds(hero.films) : [];
-
-        // get starships
-        const starships =
+        // Load films and starships in parallel after getting hero
+        // This reduces total loading time while respecting rate limits
+        const [films, starships] = await Promise.all([
+          hero.films.length > 0 ? getFilmsByIds(hero.films) : Promise.resolve([]),
           hero.starships.length > 0
-            ? await getStarshipsByIds(hero.starships)
-            : [];
+            ? getStarshipsByIds(hero.starships)
+            : Promise.resolve([]),
+        ]);
 
         const data: GraphData = {
           hero,
