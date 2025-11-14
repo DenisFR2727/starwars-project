@@ -125,8 +125,10 @@ export default function HeroGraphDetails() {
             selectNodesOnDrag={false}
             fitView
             fitViewOptions={{
-              padding: 0.2,
+              padding: 0.4,
               maxZoom: 1.5,
+              minZoom: 0.3,
+              includeHiddenNodes: false,
             }}
           >
             <Background />

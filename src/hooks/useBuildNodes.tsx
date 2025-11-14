@@ -23,7 +23,26 @@ export default function useBuildNodes(graphData: GraphData) {
     const isMobile = window.innerWidth < 768;
     const centerX = isMobile ? 200 : 400;
     const centerY = isMobile ? 100 : 50;
-    const filmRadius = isMobile ? 120 : 200;
+    
+    // Збільшені відстані для уникнення накладань
+    const nodeWidth = 200; // Приблизна ширина вузла з padding
+    const nodeHeight = 160; // Приблизна висота вузла (з урахуванням тексту)
+    const minDistance = Math.max(nodeWidth, nodeHeight) + 150; // Мінімальна відстань між вузлами (значно збільшено)
+    
+    // Розраховуємо радіус на основі кількості фільмів
+    const filmsCount = graphData.films.length;
+    // Для одного фільму - вертикальне розташування з великою відстанню
+    // Для кількох - півколо з достатньою відстанню
+    const filmRadius = isMobile 
+      ? filmsCount === 1 
+        ? 0 // Вертикальне розташування
+        : Math.max(300, (minDistance * filmsCount) / Math.PI) // Півколо
+      : filmsCount === 1
+        ? 0 // Вертикальне розташування
+        : Math.max(450, (minDistance * filmsCount) / Math.PI); // Півколо
+    
+    // Вертикальна відстань від героя до фільмів (значно збільшено)
+    const verticalOffset = isMobile ? 350 : 500;
 
     // The central node - the hero
     const heroNode: Node = {
@@ -51,12 +70,24 @@ export default function useBuildNodes(graphData: GraphData) {
 
     newNodes.push(heroNode);
 
-    // Movie trailers
+    // Movie trailers - розташовуємо півколом знизу від героя
     const filmNodes: Node[] = graphData.films.map((film, index) => {
-      const angle = (index * 360) / graphData.films.length;
-      const x = centerX + filmRadius * Math.cos((angle * Math.PI) / 180);
-      const y =
-        (isMobile ? 250 : 300) + filmRadius * Math.sin((angle * Math.PI) / 180);
+      let x: number, y: number;
+      
+      if (filmsCount === 1) {
+        // Для одного фільму - прямо під героєм з великою відстанню
+        x = centerX;
+        y = centerY + verticalOffset;
+      } else {
+        // Розташовуємо фільми в півколі (180 градусів) знизу від героя
+        // Починаємо з -90 градусів (знизу) і розподіляємо рівномірно
+        const startAngle = -90; // Починаємо знизу
+        const angleRange = 180; // 180 градусів для півкола
+        const angle = startAngle + (index * angleRange) / (filmsCount - 1);
+        
+        x = centerX + filmRadius * Math.cos((angle * Math.PI) / 180);
+        y = centerY + verticalOffset + filmRadius * Math.sin((angle * Math.PI) / 180);
+      }
 
       return {
         id: `film-${film.id}`,
@@ -117,8 +148,8 @@ export default function useBuildNodes(graphData: GraphData) {
 
     // Spacecraft nodes
     const starshipNodes: Node[] = [];
-    const nodeSpacing = isMobile ? 180 : 250; // Збільшена відстань між вузлами
-    const starshipRadius = isMobile ? 150 : 250; // Збільшена відстань від фільмів
+    const nodeSpacing = isMobile ? 350 : 450; // Значно збільшена відстань між вузлами
+    const starshipRadius = isMobile ? 350 : 550; // Значно збільшена відстань від фільмів
 
     // We create nodes for ships, grouping them by movie
     graphData.films.forEach((film, filmIndex) => {
@@ -131,12 +162,20 @@ export default function useBuildNodes(graphData: GraphData) {
       filmStarships.forEach((starship, starshipIndex) => {
         // Checking if the node already exists
         if (!starshipNodes.find((n) => n.id === `starship-${starship.id}`)) {
-          const angle = (filmIndex * 360) / graphData.films.length;
-          const baseX =
-            centerX + filmRadius * Math.cos((angle * Math.PI) / 180);
-          const baseY =
-            (isMobile ? 250 : 300) +
-            filmRadius * Math.sin((angle * Math.PI) / 180);
+          // Використовуємо той самий алгоритм розташування, що і для фільмів
+          let baseX: number, baseY: number;
+          
+          if (filmsCount === 1) {
+            baseX = centerX;
+            baseY = centerY + verticalOffset;
+          } else {
+            const startAngle = -90;
+            const angleRange = 180;
+            const angle = startAngle + (filmIndex * angleRange) / (filmsCount - 1);
+            
+            baseX = centerX + filmRadius * Math.cos((angle * Math.PI) / 180);
+            baseY = centerY + verticalOffset + filmRadius * Math.sin((angle * Math.PI) / 180);
+          }
 
           // Покращене розташування з більшою відстанню
           const offsetX =
